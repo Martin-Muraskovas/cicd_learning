@@ -24,7 +24,7 @@ There are various situations where the implementation of CI/CD is not only appro
 
 ## Visualising how CI/CD works
 ![Diagram of CICD](diagram_cicd.png)
-- 
+- 1
 - 
 - 
 - 
