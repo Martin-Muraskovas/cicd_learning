@@ -1,5 +1,6 @@
 # CI/CD - What? Why? When? How?
 ## What is CI/CD?
+![](image-5.png) <br>
 - CI/CD stands for Continuous Integration/Continuous Deployment.
 -  It is a software development practice that aims to automate the process of integrating code changes into a shared repository which is called continuous integration, and then automatically deploying those changes to production or other environments, which is called continuous deployment.
 ## Why should we use CI/CD?
