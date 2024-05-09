@@ -13,14 +13,8 @@ https://github.com/Martin-Muraskovas/cicd_learning<br>
 ![alt text](image-1.png)<br>
 
 3. Your new job should merge the code with the main branch on github.
-    ```
-    git checkout main
-    git pull origin main
-    git merge dev
-    git add .
-    git commit -m "merged dev branch into main branch"
-    git push origin main
-    ```
+Bad practice to use git commands. Use a Jenkins plugin instead.
+
 
 ## Task 3
 Create an EC-2 instance to be used as a production environment.
