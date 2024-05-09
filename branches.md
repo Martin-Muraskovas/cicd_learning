@@ -9,15 +9,19 @@ https://github.com/Martin-Muraskovas/cicd_learning<br>
 `git checkout -b dev`
 
 2. Make a change to the dev branch locally, push to github. Your jenkins job should trigger a new job if the tests pass on the dev branch.<br>
+Follow this [guide](https://github.com/Martin-Muraskovas/cicd_learning/blob/main/jenkins-cicd-first-job.md), however change the branch specifier as shown below.
 ![alt text](image.png)<br>
 ![alt text](image-1.png)<br>
 
-3. Your new job should merge the code with the main branch on github.
+1. Your new job should merge the code with the main branch on github.
 Bad practice to use git commands. Use a Jenkins plugin instead.<br>
-![alt text](image-3.png)
+Select merge before build.<br>
+![alt text](image-4.png)<br>
+![alt text](image-3.png)<br>
+
 
 ### Diagram of Task 2
-![alt text](diagram.png)
+![alt text](diagram.png)<br>
 
 ## Task 3
 Create an EC-2 instance to be used as a production environment.
