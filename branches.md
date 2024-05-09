@@ -1,4 +1,4 @@
-# Continuous Development using Jenkins
+# CI using Jenkins
 
 ## Task 1 - Creating a dev branch in the app repository.
 Create a new github repo and push the app folder to this repo:<br>
@@ -32,9 +32,10 @@ The security group should allow:
    - Port 3000 for node.js
    - Port 80 for HTTP
 
-We also need to install node.js as well as npm.
+We also need to install node.js and nginx.
 
 ### Diagram of Task 3
+![alt text](task3.png)<br>
 
 ## Task 4
 
