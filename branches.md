@@ -2,15 +2,15 @@
 
 ## Task 1
 Create a new github repo and push the app folder to this repo:<br>
-https://github.com/Martin-Muraskovas/cicd_learning
+https://github.com/Martin-Muraskovas/cicd_learning<br>
 
 ## Task 2
-1. Create a dev branch using git.
+1. Create a dev branch using git.<br>
 `git checkout -b dev`
 
-2. Make a change to the dev branch locally, push to github. Your jenkins job should trigger a new job if the tests pass on the dev branch.
-![alt text](image.png)
-![alt text](image-1.png)
+2. Make a change to the dev branch locally, push to github. Your jenkins job should trigger a new job if the tests pass on the dev branch.<br>
+![alt text](image.png)<br>
+![alt text](image-1.png)<br>
 
 3. Your new job should merge the code with the main branch on github.
     ```
@@ -33,9 +33,8 @@ The security group should allow:
 
 ## Task 4
 
-automate process of ssh step 1
-copy code
-manually ssh in and check if code is there
-manually start app, check if it works, check if there are new features
-
-go back and automate starting the app
+- Automate the process of step 1
+- Copy the code
+- Manually ssh in and check if code is there
+- Manually start the app, check if it works, check if there are the new features
+- Go back and automate starting the app
