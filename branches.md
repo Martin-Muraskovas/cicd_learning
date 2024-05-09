@@ -26,7 +26,7 @@ The security group should allow:
    - Port 22 for SSH
    - Port 8080 for Jenkins
    - Port 3000 for node.js
-   - Port 80 for HTTP.
+   - Port 80 for HTTP
 
 ### Diagram of Task 3
 
