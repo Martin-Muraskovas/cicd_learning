@@ -4,7 +4,7 @@
   - [When is CI/CD appropriate?](#when-is-cicd-appropriate)
   - [How can CI/CD be implemented?](#how-can-cicd-be-implemented)
   - [What is a Webhook?](#what-is-a-webhook)
-  - [What is the difference between delivery and deployment in producation?](#what-is-the-difference-between-delivery-and-deployment-in-producation)
+  - [What is the difference between delivery and deployment in production?](#what-is-the-difference-between-delivery-and-deployment-in-production)
   - [Visualising how CI/CD works](#visualising-how-cicd-works)
 - [Setting up Continuous Integration using Jenkins](#setting-up-continuous-integration-using-jenkins)
   - [1. New item](#1-new-item)
@@ -15,6 +15,7 @@
   - [6. Creating a webhook](#6-creating-a-webhook)
   - [7. Save, Build, and Test](#7-save-build-and-test)
 - [CICD using Jenkins](#cicd-using-jenkins)
+  - [High Level Overview](#high-level-overview)
   - [Job Plan](#job-plan)
   - [Task 1 - Creating a dev branch in the app repository.](#task-1---creating-a-dev-branch-in-the-app-repository)
   - [Task 2 - CI-Merge - Create 2 Jobs to test and then merge code committed to the dev branch](#task-2---ci-merge---create-2-jobs-to-test-and-then-merge-code-committed-to-the-dev-branch)
@@ -61,7 +62,7 @@ Webhooks are triggered by specific events and send data from one application to 
 They are commonly used to automate processes, such as sending notifications, updating data, or triggering actions in response to events.
 
 
-## What is the difference between delivery and deployment in producation?
+## What is the difference between delivery and deployment in production?
 In software development, delivery refers to the process of making the software available for testing or release. 
 
 Deployment includes activities such as configuring the software, setting up the necessary infrastructure, and ensuring that the software runs smoothly in the production environment.
@@ -105,6 +106,9 @@ This is the expected outcome:<br>
 ![alt text](martin-images/8.png)
 
 # CICD using Jenkins
+
+## High Level Overview
+![alt text](image-6.png)
 
 ## Job Plan
 - Job 1 CI<br>
