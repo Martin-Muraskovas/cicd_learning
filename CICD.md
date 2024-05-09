@@ -1,5 +1,30 @@
+- [CI/CD - What? Why? When? How?](#cicd---what-why-when-how)
+  - [What is CI/CD?](#what-is-cicd)
+  - [Why should we use CI/CD?](#why-should-we-use-cicd)
+  - [When is CI/CD appropriate?](#when-is-cicd-appropriate)
+  - [How can CI/CD be implemented?](#how-can-cicd-be-implemented)
+  - [What is a Webhook?](#what-is-a-webhook)
+  - [What is the difference between delivery and deployment in producation?](#what-is-the-difference-between-delivery-and-deployment-in-producation)
+  - [Visualising how CI/CD works](#visualising-how-cicd-works)
+- [Setting up Continuous Integration using Jenkins](#setting-up-continuous-integration-using-jenkins)
+  - [1. New item](#1-new-item)
+  - [2. Enter the Name -\> Select Freestyle Project](#2-enter-the-name---select-freestyle-project)
+  - [3. Set it as a GitHub project](#3-set-it-as-a-github-project)
+  - [4. Restrict where the project can be run.](#4-restrict-where-the-project-can-be-run)
+  - [5. Create an SSH key pair](#5-create-an-ssh-key-pair)
+  - [6. Creating a webhook](#6-creating-a-webhook)
+  - [7. Save, Build, and Test](#7-save-build-and-test)
+- [CICD using Jenkins](#cicd-using-jenkins)
+  - [Job Plan](#job-plan)
+  - [Task 1 - Creating a dev branch in the app repository.](#task-1---creating-a-dev-branch-in-the-app-repository)
+  - [Task 2 - CI-Merge - Create 2 Jobs to test and then merge code committed to the dev branch](#task-2---ci-merge---create-2-jobs-to-test-and-then-merge-code-committed-to-the-dev-branch)
+    - [Diagram of Task 2](#diagram-of-task-2)
+  - [Task 3 - CD](#task-3---cd)
+    - [Diagram of Task 3](#diagram-of-task-3)
+  - [Task 4 - CD](#task-4---cd)
+    - [Diagram of Task 4](#diagram-of-task-4)
 
-
+<br>
 
 # CI/CD - What? Why? When? How?
 ## What is CI/CD?
@@ -79,13 +104,30 @@ To test that the webhook is working, commit and push something to your GitHub re
 This is the expected outcome:<br>
 ![alt text](martin-images/8.png)
 
-# CI using Jenkins
+# CICD using Jenkins
+
+## Job Plan
+- Job 1 CI<br>
+  - Pushing changes to a git repository will trigger a webhook that will automatically test the newest code that has been puhed to the repo.
+- Job 2 CI-Merge
+  - Once Job 1 has been triggered and completed, job 2 will be activated.
+  - A dev branch is required for this.
+  - Once changes have been saved to the dev branch, these changes should be tested, and if the tests pass, they will then be merged with the main branch.
+- Job 3 CD
+  - Create an EC-2 instance
+  - Set up the security groups and dependencies.
+  - Get the latest code from the 2nd job onto the instance.
+  - SSH in and manually test this code
+- Job 4 CDE
+  - Give Jenkins the SSH credentials to login to the EC-2 instance from Job 3
+  - Have Jenkins navigate to the app folder and run the app in the background.
+
 
 ## Task 1 - Creating a dev branch in the app repository.
 Create a new github repo and push the app folder to this repo:<br>
 https://github.com/Martin-Muraskovas/cicd_learning<br>
 
-## Task 2 - Create 2 Jobs to test and then merge code committed to the dev branch
+## Task 2 - CI-Merge - Create 2 Jobs to test and then merge code committed to the dev branch
 1. Create a dev branch using git.<br>
 `git checkout -b dev`
 
@@ -104,7 +146,7 @@ Select merge before build.<br>
 ### Diagram of Task 2
 ![alt text](diagram.png)<br>
 
-## Task 3
+## Task 3 - CD
 Create an EC-2 instance to be used as a production environment.
 This instance should have `Ubuntu 18.04 LTS` as the image.
 The security group should allow:
@@ -118,12 +160,9 @@ We also need to install node.js and nginx.
 ### Diagram of Task 3
 ![alt text](task3.png)<br>
 
-## Task 4
+## Task 4 - CD
 
-- Automate the process of step 1
-- Copy the code
-- Manually ssh in and check if code is there
-- Manually start the app, check if it works, check if there are the new features
-- Go back and automate starting the app
+- Allow Jenkins to SSH into the EC-2
+- Jenkins will then `cd` into the app folder and run our app in the background.
 
 ### Diagram of Task 4
