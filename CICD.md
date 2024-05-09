@@ -51,7 +51,7 @@ There are various situations where the implementation of CI/CD is not only appro
    - Continous approach
      - CI/CD uses a continous feedback loop where the development, testing, and operations teams are linked. This allows for issues to be quickly solved.
 ## How can CI/CD be implemented?
-Jenkins
+Jenkins is cool
 
 
 ## What is a Webhook?
