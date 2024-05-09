@@ -14,7 +14,7 @@ https://github.com/Martin-Muraskovas/cicd_learning<br>
 
 3. Your new job should merge the code with the main branch on github.
 Bad practice to use git commands. Use a Jenkins plugin instead.<br>
-![alt text](image-2.png)
+![alt text](image-3.png)
 
 ### Diagram of Task 2
 ![alt text](diagram.png)
