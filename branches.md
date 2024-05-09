@@ -32,6 +32,8 @@ The security group should allow:
    - Port 3000 for node.js
    - Port 80 for HTTP
 
+We also need to install node.js as well as npm.
+
 ### Diagram of Task 3
 
 ## Task 4
