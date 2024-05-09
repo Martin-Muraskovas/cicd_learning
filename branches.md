@@ -1,10 +1,10 @@
 # Continuous Development using Jenkins
 
-## Task 1
+## Task 1 - Creating a dev branch in the app repository.
 Create a new github repo and push the app folder to this repo:<br>
 https://github.com/Martin-Muraskovas/cicd_learning<br>
 
-## Task 2
+## Task 2 - Create 2 Jobs to test and then merge code committed to the dev branch
 1. Create a dev branch using git.<br>
 `git checkout -b dev`
 
@@ -13,7 +13,7 @@ Follow this [guide](https://github.com/Martin-Muraskovas/cicd_learning/blob/main
 ![alt text](image.png)<br>
 ![alt text](image-1.png)<br>
 
-1. Your new job should merge the code with the main branch on github.
+3. Your new job should merge the code with the main branch on github.
 Bad practice to use git commands. Use a Jenkins plugin instead.<br>
 Select merge before build.<br>
 ![alt text](image-4.png)<br>
