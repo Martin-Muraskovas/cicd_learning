@@ -1,3 +1,6 @@
+
+
+
 # CI/CD - What? Why? When? How?
 ## What is CI/CD?
 ![](image-5.png) <br>
@@ -87,7 +90,7 @@ https://github.com/Martin-Muraskovas/cicd_learning<br>
 `git checkout -b dev`
 
 2. Make a change to the dev branch locally, push to github. Your jenkins job should trigger a new job if the tests pass on the dev branch.<br>
-Follow this [guide](https://github.com/Martin-Muraskovas/cicd_learning/blob/main/jenkins-cicd-first-job.md), however change the branch specifier as shown below.
+Follow this [guide](https://github.com/Martin-Muraskovas/cicd_learning/blob/main/CICD.md#setting-up-continuous-integration-using-jenkins), however change the branch specifier as shown below.
 ![alt text](image.png)<br>
 ![alt text](image-1.png)<br>
 
