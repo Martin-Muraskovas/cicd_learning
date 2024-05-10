@@ -22,6 +22,10 @@ sudo -E npm install
 sudo npm install pm2 -g
 sudo apt-get install nginx -y
 
+sudo sed -i '51s/.*/\t        proxy_pass http:\/\/localhost:3000;/' /etc/nginx/sites-available/default
+ 
+sudo systemctl restart nginx
+
 # remove the old file and add our one
 #sudo rm /etc/nginx/sites-available/default
 #sudo cp /home/ubuntu/sre_jenkins_cicd/environment/app/nginx.default /etc/nginx/sites-available/default
