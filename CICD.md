@@ -22,6 +22,8 @@
     - [Diagram of Task 2](#diagram-of-task-2)
   - [Task 3 - CD](#task-3---cd)
   - [Setting up our production environment](#setting-up-our-production-environment)
+  - [Continuous Delivery](#continuous-delivery)
+  - [Continuous Deployment](#continuous-deployment)
     - [Diagram of Task 3](#diagram-of-task-3)
   - [Task 4 - CD](#task-4---cd)
     - [Diagram of Task 4](#diagram-of-task-4)
@@ -194,8 +196,30 @@ We also need to install node.js and nginx.
     ```
 This code should allow Jenkins to SSH into your instance and configure nginx. This can be confirmed by visiting the public IP of your production environment (the EC2 we configured in step 1).
 
-
-1. 
+## Continuous Delivery
+1. Go back to the Job you began from the last section.
+2. Append the shell script with the following commands:
+    ```
+    # copy code from main branch
+    rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@3.252.61.112:/home/ubuntu
+    rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@3.252.61.112:/home/ubuntu
+    ```
+    This code will copy the updated code from the main branch in your Jenkins node onto your EC2 production environment.
+## Continuous Deployment
+1. Go back to the same job from the continuous delivery section.
+2. Append the shell script with the following commands:
+    ```
+    # install the required dependencies using provision.sh
+    ssh -o "StrictHostKeyChecking=no" ubuntu@3.252.61.112 <<EOF
+      sudo chmod +x ~/environment/app/provision.sh
+        #sudo chmod +x ~/environment/db/provision.sh
+        #sudo bash ./environment/db/provision.sh
+      sudo bash ./environment/app/provision.sh
+        cd app
+        pm2 kill
+        pm2 start app.js
+    EOF
+    ```
 
 ### Diagram of Task 3
 ![alt text](task3.png)<br>
