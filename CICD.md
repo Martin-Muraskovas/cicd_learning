@@ -22,10 +22,10 @@
     - [Diagram of Task 2](#diagram-of-task-2)
   - [Task 3 - CD](#task-3---cd)
   - [Setting up our production environment](#setting-up-our-production-environment)
+    - [Diagram of Task 3 - Setting up the Production Environment](#diagram-of-task-3---setting-up-the-production-environment)
+  - [Task 4 - Continuous Delivery and Continuous Deployment](#task-4---continuous-delivery-and-continuous-deployment)
   - [Continuous Delivery](#continuous-delivery)
   - [Continuous Deployment](#continuous-deployment)
-    - [Diagram of Task 3](#diagram-of-task-3)
-  - [Task 4 - CD](#task-4---cd)
     - [Diagram of Task 4](#diagram-of-task-4)
 
 <br>
@@ -178,6 +178,7 @@ We also need to install node.js and nginx.
     Change dev to main:<br>
     ![](image-8.png)<br>
 4. Add AWS SSH credentials.
+   Need to add an image of where to change the settings here.
 5. Execute a shell script upon starting the job.
     ```
     # bypass key checking step/option
@@ -196,6 +197,10 @@ We also need to install node.js and nginx.
     ```
 This code should allow Jenkins to SSH into your instance and configure nginx. This can be confirmed by visiting the public IP of your production environment (the EC2 we configured in step 1).
 
+### Diagram of Task 3 - Setting up the Production Environment
+![alt text](task3.png)<br>
+
+## Task 4 - Continuous Delivery and Continuous Deployment
 ## Continuous Delivery
 1. Go back to the Job you began from the last section.
 2. Append the shell script with the following commands:
@@ -205,28 +210,25 @@ This code should allow Jenkins to SSH into your instance and configure nginx. Th
     rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@3.252.61.112:/home/ubuntu
     ```
     This code will copy the updated code from the main branch in your Jenkins node onto your EC2 production environment.
+
 ## Continuous Deployment
 1. Go back to the same job from the continuous delivery section.
 2. Append the shell script with the following commands:
     ```
     # install the required dependencies using provision.sh
     ssh -o "StrictHostKeyChecking=no" ubuntu@3.252.61.112 <<EOF
-      sudo chmod +x ~/environment/app/provision.sh
+        sudo chmod +x ~/environment/app/provision.sh
         #sudo chmod +x ~/environment/db/provision.sh
         #sudo bash ./environment/db/provision.sh
-      sudo bash ./environment/app/provision.sh
+        sudo bash ./environment/app/provision.sh
         cd app
         pm2 kill
         pm2 start app.js
     EOF
     ```
-
-### Diagram of Task 3
-![alt text](task3.png)<br>
-
-## Task 4 - CD
-
-- Allow Jenkins to SSH into the EC-2
-- Jenkins will then `cd` into the app folder and run our app in the background.
+3. The provision script is used to install all of the dependencies required to run the 
 
 ### Diagram of Task 4
+
+
+test
