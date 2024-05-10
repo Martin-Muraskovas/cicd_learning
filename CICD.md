@@ -51,7 +51,7 @@ There are various situations where the implementation of CI/CD is not only appro
    - Continous approach
      - CI/CD uses a continous feedback loop where the development, testing, and operations teams are linked. This allows for issues to be quickly solved.
 ## How can CI/CD be implemented?
-Jenkins is cool
+Jenkins is a good way of implementing CI/CD. You are able to use jobs to create a pipeline where the CI part and the CD part can be abstracted into smaller jobs that link together to create the whole pipeline.
 
 
 ## What is a Webhook?
