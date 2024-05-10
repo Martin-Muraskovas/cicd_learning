@@ -16,9 +16,11 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install nodejs -y
 
 # npm install
-cd app
+export DB_HOST=mongodb://172.31.39.216:27017/posts
 sudo -E npm install
 # install pm2
+
+
 sudo npm install pm2 -g
 sudo apt-get install nginx -y
 
