@@ -226,9 +226,71 @@ This code should allow Jenkins to SSH into your instance and configure nginx. Th
         pm2 start app.js
     EOF
     ```
-3. The provision script is used to install all of the dependencies required to run the 
+3. The provision script is used to install all of the dependencies required to run the app.
+```
+#!/bin/bash
+
+# Update the sources list
+sudo apt-get update -y
+
+# upgrade any packages available
+sudo apt-get upgrade -y
+
+
+# install git
+sudo apt-get install git -y
+
+# install nodejs
+sudo apt-get install python-software-properties -y
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install nodejs -y
+
+# npm install
+cd app
+sudo -E npm install
+# install pm2
+sudo npm install pm2 -g
+sudo apt-get install nginx -y
+
+# remove the old file and add our one
+#sudo rm /etc/nginx/sites-available/default
+#sudo cp /home/ubuntu/sre_jenkins_cicd/environment/app/nginx.default /etc/nginx/sites-available/default
+
+# finally, restart the nginx service so the new config takes hold
+#sudo service nginx restart
+#sudo service nginx enable
+
+```
+
+There are 3 ways to run this app.
+You can cd into the app first, and then npm install.
+```
+cd app
+sudo npm install
+./provision.sh
+pm2 kill
+pm2 start app.js
+```
+You can install npm globally and then cd into the app folder and run the app.
+```
+#within provision.sh there is the command sudo -E npm install
+./provision.sh
+cd app
+pm2 kill
+pm2 start app.js
+```
+You can cd into the app folder within the provision script right at the start and then run the app in or outside of the provision script.
+```
+#within the provision script
+cd app
+npm install
+#outside of the script
+pm2 kill
+pm2 start app.js
+```
 
 ### Diagram of Task 4
+![alt text](task4.png)
 
 
-test3
+test
