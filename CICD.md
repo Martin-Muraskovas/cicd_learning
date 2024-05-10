@@ -172,7 +172,24 @@ We also need to install node.js and nginx.
 2. Make a new job on Jenkins. Freestyle project.
 3. Set up the GitHub project to be the main branch as this is where we have our code.
 4. Add AWS SSH credentials.
-5. 
+5. Execute a shell script upon starting the job.
+    ```
+    # bypass key checking step/option
+    # ssh into ec2
+    ssh -i "tech258.pem" ubuntu@ec2-3-255-154-125.eu-west-1.compute.amazonaws.com -o StrictHostKeyChecking=no <<EOF
+
+    # run update and upgrade
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+
+    # install nginx
+    sudo apt-get install nginx -y
+    # visit public ip to ensure nginx is running
+    sudo systemctl enable nginx
+    EOF
+    ```
+This code should allow Jenkins to SSH into your instance and configure nginx. This can be confirmed by visiting the public IP of your production environment (the EC2 we configured in step 1).
+
 6. test6
 
 ### Diagram of Task 3
