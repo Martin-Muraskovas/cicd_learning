@@ -164,8 +164,16 @@ We also need to install node.js and nginx.
 
 1. Create an EC2 instance from an image. In our case we are using this image:
    - https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#ImageDetails:imageId=ami-02f0341ac93c96375
+   - Give the following security groups:
+     - Port 22 for SSH
+     - Port 8080 for Jenkins
+     - Port 3000 for node.js
+     - Port 80 for HTTP<br>
 2. Make a new job on Jenkins. Freestyle project.
-3. test6
+3. Set up the GitHub project to be the main branch as this is where we have our code.
+4. Add AWS SSH credentials.
+5. 
+6. test6
 
 ### Diagram of Task 3
 ![alt text](task3.png)<br>
