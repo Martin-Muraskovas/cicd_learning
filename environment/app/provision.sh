@@ -17,7 +17,7 @@ sudo apt-get install nodejs -y
 
 # npm install
 cd app
-sudo npm install
+sudo -E npm install
 # install pm2
 sudo npm install pm2 -g
 sudo apt-get install nginx -y
