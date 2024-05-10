@@ -16,8 +16,7 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install nodejs -y
 
 
-sudo apt-get install npm -y
-
+sudo npm install
 # install pm2
 sudo npm install pm2 -g
 sudo apt-get install nginx -y
