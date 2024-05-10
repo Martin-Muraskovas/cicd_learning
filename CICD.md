@@ -165,7 +165,7 @@ We also need to install node.js and nginx.
 1. Create an EC2 instance from an image. In our case we are using this image:
    - https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#ImageDetails:imageId=ami-02f0341ac93c96375
 2. Make a new job on Jenkins. Freestyle project.
-3. test2
+3. test3
 
 ### Diagram of Task 3
 ![alt text](task3.png)<br>
