@@ -21,6 +21,7 @@
   - [Task 2 - CI-Merge - Create 2 Jobs to test and then merge code committed to the dev branch](#task-2---ci-merge---create-2-jobs-to-test-and-then-merge-code-committed-to-the-dev-branch)
     - [Diagram of Task 2](#diagram-of-task-2)
   - [Task 3 - CD](#task-3---cd)
+  - [Setting up our production environment](#setting-up-our-production-environment)
     - [Diagram of Task 3](#diagram-of-task-3)
   - [Task 4 - CD](#task-4---cd)
     - [Diagram of Task 4](#diagram-of-task-4)
@@ -161,7 +162,7 @@ The security group should allow:
 
 We also need to bypass user input for when we are SSHing into our instance.
 We also need to install node.js and nginx.
-
+## Setting up our production environment
 1. Create an EC2 instance from an image. In our case we are using this image:
    - https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#ImageDetails:imageId=ami-02f0341ac93c96375
    - Give the following security groups:
@@ -193,7 +194,8 @@ We also need to install node.js and nginx.
     ```
 This code should allow Jenkins to SSH into your instance and configure nginx. This can be confirmed by visiting the public IP of your production environment (the EC2 we configured in step 1).
 
-1. test6
+
+1. 
 
 ### Diagram of Task 3
 ![alt text](task3.png)<br>
