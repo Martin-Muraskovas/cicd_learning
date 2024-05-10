@@ -14,7 +14,7 @@ sudo apt-get install git -y
 sudo apt-get install python-software-properties -y
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install nodejs -y
-export DB_HOST=mongodb://172.31.39.216:27017/posts
+
 # npm install
 cd app
 sudo -E npm install
