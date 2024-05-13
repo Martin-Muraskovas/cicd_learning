@@ -27,6 +27,7 @@
   - [Continuous Delivery](#continuous-delivery)
   - [Continuous Deployment](#continuous-deployment)
     - [Diagram of Task 4](#diagram-of-task-4)
+  - [Continuous Deployment](#continuous-deployment-1)
 
 <br>
 
@@ -293,4 +294,28 @@ pm2 start app.js
 ![alt text](task4.png)
 
 
-test
+## Continuous Deployment 
+Now that we have used a Jenkins job to automate the provision of the production environment. We are able to create a new job with less commands to get the app running faster as the dependencies are already installed on our environment.
+This is the script:
+```
+EC2_IP=34.245.113.41
+# clone the code from main branch
+# push to the production environment ec2-ip
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@$EC2_IP:/home/ubuntu
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@$EC2_IP:/home/ubuntu
+ssh -i "tech258.pem" ubuntu@ec2-34-245-113-41.eu-west-1.compute.amazonaws.com -o StrictHostKeyChecking=no <<EOF
+# nav to the app folder
+cd app
+# install required dependencies npm install
+sudo -E npm install
+
+# launch the app node app.js/npm start - MUST NOT RUN THESE COMMANDS USING JENKINS
+
+# ensure to kill npm/node/pm2 - sudo kill all/-9
+pm2 kill
+# launch the app in the background -pm2 or use &
+pm2 start app.js
+# once it works integrate it with the third job using post build actions
+
+```
+
