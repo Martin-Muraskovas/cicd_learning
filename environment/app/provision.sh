@@ -27,6 +27,7 @@ sudo apt-get install nginx -y
 sudo sed -i '51s/.*/\t        proxy_pass http:\/\/localhost:3000;/' /etc/nginx/sites-available/default
  
 sudo systemctl restart nginx
+sudo systemctl enable nginx
 
 # remove the old file and add our one
 #sudo rm /etc/nginx/sites-available/default
