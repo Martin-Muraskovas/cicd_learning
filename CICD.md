@@ -414,5 +414,5 @@ SSH Agent
 Node.js
 ![](image-12.png)<br>
 
-We will also need to configure our security settings as such:
-![](image-13.png)><br>
+We will also need to configure our security settings as such:<br>
+![](image-13.png)<br>
