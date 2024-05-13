@@ -28,6 +28,7 @@
   - [Continuous Deployment](#continuous-deployment)
     - [Diagram of Task 4](#diagram-of-task-4)
   - [Continuous Deployment Continued](#continuous-deployment-continued)
+  - [Including the Database in the pipeline](#including-the-database-in-the-pipeline)
 
 <br>
 
@@ -296,14 +297,15 @@ pm2 start app.js
 
 ## Continuous Deployment Continued
 Now that we have used a Jenkins job to automate the provision of the production environment. We are able to create a new job with less commands to get the app running faster as the dependencies are already installed on our environment.
-This is the script:
-    ```
+This is the script:<br>
+
     EC2_IP=34.245.113.41
     # clone the code from main branch
     # push to the production environment ec2-ip
+
     rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@$EC2_IP:/home/ubuntu
     rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@$EC2_IP:/home/ubuntu
-    ssh -i "tech258.pem" ubuntu@ec2-34-245-113-41.eu-west-1.compute.amazonaws.com -o StrictHostKeyChecking=no <<#EOF
+    ssh -i "tech258.pem" ubuntu@ec2-34-245-113-41.eu-west-1.compute.amazonaws.com -o StrictHostKeyChecking=no <<EOF
     # nav to the app folder
     cd app
     # install required dependencies npm install
@@ -317,5 +319,53 @@ This is the script:
     pm2 start app.js
     # once it works integrate it with the third job using post build actions
 
-    ```
 
+## Including the Database in the pipeline
+I created an additional job in jenkins that was inserted between the code merge job and the app deployment job.
+
+I am using this script as a shell script that is run when the Jenkins job is run.
+```
+  EC2_IP=54.216.233.241
+  # bypass key checking step/option
+  # ssh into ec2
+  ssh -i "tech258.pem" ubuntu@$EC2_IP -o StrictHostKeyChecking=no <<EOF
+
+  # run update and upgrade
+  sudo apt-get update -y
+  sudo apt-get upgrade -y
+  EOF
+  
+  # copy new code
+  # navigate to the folder containing the script
+  rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@$EC2_IP:/home/ubuntu
+  rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@$EC2_IP:/home/ubuntu
+
+  # install the required dependencies using provision.sh
+  ssh -o "StrictHostKeyChecking=no" ubuntu@$EC2_IP <<EOF
+      sudo chmod +x ~/environment/db/provision.sh
+      sudo bash ./environment/db/provision.sh
+  EOF
+```
+
+I call a provision script within the shell script above, this it my script:
+
+```
+#!/bin/bash
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv D68FA50FEA312927
+echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update
+
+# sudo apt-get install mongodb-org=3.2.20 -y
+sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+
+# remove the default .conf and replace with our configuration
+sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
+
+# if mongo is is set up correctly these will be successful
+sudo systemctl enable mongod
+sudo systemctl restart mongod
+```
