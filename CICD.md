@@ -29,6 +29,7 @@
     - [Diagram of Task 4](#diagram-of-task-4)
   - [Continuous Deployment Continued](#continuous-deployment-continued)
   - [Including the Database in the pipeline](#including-the-database-in-the-pipeline)
+  - [Creating my own Jenkins](#creating-my-own-jenkins)
 
 <br>
 
@@ -369,3 +370,49 @@ sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
 sudo systemctl enable mongod
 sudo systemctl restart mongod
 ```
+
+## Creating my own Jenkins
+1. On AWS create a blank EC2 instance, you will need Ubuntu 22.04 and have port 22 and port 8080 open.
+2. SSH into the new instance.
+3. Run these commands
+  ```
+  sudo apt update
+  sudo apt install fontconfig openjdk-17-jre
+  java -version
+  ```
+  Sometimes there are issue with installing Java this way so you must use:
+  `sudo snap install openjdk`
+
+  ```
+    sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+      https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+      https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+      /etc/apt/sources.list.d/jenkins.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install jenkins
+  ```
+
+Once these commands are entered, proceed to the public IP of your EC2 with port 8080 on the end.
+You should be greeted with the following:
+
+![alt text](image-9.png)
+
+Use this command to retrieve your initial admin password:
+`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
+
+After you have entered your password, you can select which packages you would like and then proceed to allow Jenkins to set itself up:
+![](image-10.png)
+
+
+In Jenkins, our specific project will require us to install a few plugins before we can continue. To install plugins on Jenkins, head over to your Jenkins settings and click plugins.
+
+We will need the following plugins:
+
+SSH Agent
+![](image-11.png)<br>
+Node.js
+![](image-12.png)<br>
+
+We will also need to configure our security settings as such:
+![](image-13.png)><br>
