@@ -17,9 +17,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org=7.0.6 mongodb-org-database=7.0.6 mongodb-org-server=7.0.6 mongodb-mongosh=2.2.4 mongodb-org-mongos=7.0.6 mongodb-org-tools=7.0.6
 
 # remove the default .conf and replace with our configuration
-sudo rm /etc/mongod.conf
-cd /home/ubuntu/environment/
-sudo mv mongod.conf /etc/
+sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf
 
 # if mongo is is set up correctly these will be successful
 sudo systemctl enable mongod
