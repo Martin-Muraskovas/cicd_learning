@@ -23,9 +23,9 @@
   - [Task 3 - CD](#task-3---cd)
   - [Setting up our production environment](#setting-up-our-production-environment)
     - [Diagram of Task 3 - Setting up the Production Environment](#diagram-of-task-3---setting-up-the-production-environment)
-  - [Task 4 - Continuous Delivery and Continuous Deployment](#task-4---continuous-delivery-and-continuous-deployment)
+  - [Task 4 - Continuous Delivery and Continuous Deployment (CD-CDE)](#task-4---continuous-delivery-and-continuous-deployment-cd-cde)
   - [Continuous Delivery](#continuous-delivery)
-  - [Continuous Deployment](#continuous-deployment)
+  - [Continuous Deployment - Streamlined](#continuous-deployment---streamlined)
     - [Diagram of Task 4](#diagram-of-task-4)
   - [Continuous Deployment Continued](#continuous-deployment-continued)
   - [Including the Database in the pipeline](#including-the-database-in-the-pipeline)
@@ -123,13 +123,13 @@ This is the expected outcome:<br>
   - Once Job 1 has been triggered and completed, job 2 will be activated.
   - A dev branch is required for this.
   - Once changes have been saved to the dev branch, these changes should be tested, and if the tests pass, they will then be merged with the main branch.
-- Job 3 CD
+- Job 3 Production Environment
   - Create an EC-2 instance
   - Set up the security groups and dependencies.
   - Get the latest code from the 2nd job onto the instance.
   - SSH in and manually test this code
-- Job 4 CDE
-  - Give Jenkins the SSH credentials to login to the EC-2 instance from Job 3
+- Job 3 CDE
+  - Give Jenkins the SSH credentials to login to the EC-2 instance 
   - Have Jenkins navigate to the app folder and run the app in the background.
 
 
@@ -156,7 +156,7 @@ Select merge before build.<br>
 ### Diagram of Task 2
 ![alt text](diagram.png)<br>
 
-## Task 3 - CD
+## Task 3 - CD 
 Create an EC-2 instance to be used as a production environment.
 This instance should have `Ubuntu 18.04 LTS` as the image.
 The security group should allow:
@@ -203,7 +203,7 @@ This code should allow Jenkins to SSH into your instance and configure nginx. Th
 ### Diagram of Task 3 - Setting up the Production Environment
 ![alt text](task3.png)<br>
 
-## Task 4 - Continuous Delivery and Continuous Deployment
+## Task 4 - Continuous Delivery and Continuous Deployment (CD-CDE)
 ## Continuous Delivery
 1. Go back to the Job you began from the last section.
 2. Append the shell script with the following commands:
@@ -214,7 +214,7 @@ This code should allow Jenkins to SSH into your instance and configure nginx. Th
     ```
     This code will copy the updated code from the main branch in your Jenkins node onto your EC2 production environment.
 
-## Continuous Deployment
+## Continuous Deployment - Streamlined
 1. Go back to the same job from the continuous delivery section.
 2. Append the shell script with the following commands:
     ```
